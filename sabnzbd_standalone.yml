@@ -5,4 +5,4 @@ sabnzbd:
         - "9090:9090"
     volumes:
         - ~/sabnzbd/config:/config
-        - ~/sabnzbd/data:/data
+        - ~/sabnzbd/complete:/data/complete
