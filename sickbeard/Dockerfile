@@ -6,6 +6,6 @@ RUN git clone git://github.com/midgetspy/Sick-Beard.git /sickbeard
 
 EXPOSE 8081
 
-VOLUME ["/config", "/tv", "/complete"]
+VOLUME ["/config", "/tv", "/data/complete"]
 
 ENTRYPOINT ["python", "/sickbeard/SickBeard.py", "--datadir", "/config"]

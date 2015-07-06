@@ -12,7 +12,7 @@ RUN apt-get -o APT::Install-Recommends=1 install -y sabnzbdplus unrar
 
 EXPOSE 8080 9090
 
-VOLUME ["/config", "/data/complete"]
+VOLUME ["/config", "/data/complete", "/data/incomplete"]
 
 ENTRYPOINT ["/usr/bin/sabnzbdplus", \
 						"--server", "0.0.0.0:8080", \
