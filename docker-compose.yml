@@ -1,17 +1,19 @@
+settings:
+  build: settings
 sabnzbd:
-    #image: sbrants/sabnzbd
-    build: sabnzbd
-    ports:
-        - "8080:8080"
-        - "9090:9090"
-    volumes:
-        - ~/sabnzbd/config:/config
+  build: sabnzbd
+  volumes_from:
+    - settings
 sickbeard:
-    #image: sbrants/sickbeard
-    build: sickbeard
-    ports:
-      - "8081:8081"
-    volumes:
-      - ~/sickbeard/config:/config
-    volumes_from:
-      - sabnzbd
+  build: sickbeard
+  links:
+    - sabnzbd
+  volumes_from:
+    - settings
+reverseproxy:
+  build: reverseproxy
+  ports:
+    - "443:443"
+  links:
+    - sabnzbd
+    - sickbeard
