@@ -2,7 +2,10 @@ FROM ubuntu
 
 #add  software-properties-common for add-apt-repository
 RUN apt-get install -y software-properties-common
+#Needed for unrar
 RUN apt-add-repository multiverse
+#This line is optional but that repo has a more recent version than multiverse
+RUN apt-add-repository ppa:jcfp/ppa
 RUN apt-get update
 RUN apt-get install -y sabnzbdplus unrar
 
