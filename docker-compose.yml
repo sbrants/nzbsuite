@@ -10,6 +10,12 @@ sickbeard:
     - sabnzbd
   volumes_from:
     - settings
+couchpotato:
+  build: couchpotato
+  links:
+    - sabnzbd
+  volumes_from:
+    - settings
 reverseproxy:
   build: reverseproxy
   ports:
@@ -17,3 +23,4 @@ reverseproxy:
   links:
     - sabnzbd
     - sickbeard
+    - couchpotato

@@ -49,7 +49,14 @@ pp = ""
 name = tv
 script = Default
 newzbin = ""
-dir = tv""")
+dir = tv
+[[movies]]
+priority = 1
+pp = ""
+name = tv
+script = Default
+newzbin = ""
+dir = movies""")
 
 def finSabKey():
     with open("/config/sabnzbd.ini") as sabnzbd:
@@ -74,3 +81,26 @@ if not os.path.exists("/config/config.ini"):
         sickbeard.write("sab_apikey = {}\n".format(api_key))
         sickbeard.write("sab_category = tv\n")
         sickbeard.write("sab_host = http://sabnzbd:8080/\n")
+
+if not os.path.exists("/config/settings.conf"):
+    with open("/config/settings.conf", "w") as couchpotato:
+        couchpotato.write("""[core]
+url_base = couchpotato
+launch_browser = False
+show_wizard = 0
+
+""")
+        couchpotato.write("""[renamer]
+from = /data/complete/movies/
+to = /movies/
+enabled = True
+
+""")
+        couchpotato.write("""[sabnzbd]
+category = movies
+enabled = 1
+host = sabnzbd:8080
+remove_complete = True""")
+        if "api_key" not in locals():
+            api_key = finSabKey()
+        couchpotato.write("api_key = {}\n".format(api_key))
