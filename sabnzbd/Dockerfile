@@ -8,6 +8,8 @@ RUN apt-add-repository multiverse
 RUN apt-add-repository ppa:jcfp/ppa
 RUN apt-get update
 RUN apt-get install -y sabnzbdplus unrar
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 8080 9090
 
