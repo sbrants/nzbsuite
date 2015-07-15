@@ -1,5 +1,7 @@
 settings:
   build: settings
+ddclient:
+  build: ddclient
 sabnzbd:
   build: sabnzbd
   volumes_from:
@@ -10,12 +12,14 @@ sickbeard:
     - sabnzbd
   volumes_from:
     - settings
+  restart: always
 couchpotato:
   build: couchpotato
   links:
     - sabnzbd
   volumes_from:
     - settings
+  restart: always
 reverseproxy:
   build: reverseproxy
   ports:
