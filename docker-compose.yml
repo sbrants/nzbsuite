@@ -1,25 +1,25 @@
-settings:
-  build: settings
 ddclient:
-  build: ddclient
+  image: sbrants/ddclient
 sabnzbd:
-  build: sabnzbd
+  image: sbrants/sabnzbd
   volumes_from:
     - settings
 sickbeard:
-  build: sickbeard
+  image: sbrants/sickbeard
   links:
     - sabnzbd
   volumes_from:
     - settings
   restart: always
 couchpotato:
-  build: couchpotato
+  image: sbrants/couchpotato
   links:
     - sabnzbd
   volumes_from:
     - settings
   restart: always
+settings:
+  build: settings
 reverseproxy:
   build: reverseproxy
   ports:
