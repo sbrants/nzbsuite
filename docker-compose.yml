@@ -1,5 +1,3 @@
-ddclient:
-  image: sbrants/ddclient
 sabnzbd:
   image: sbrants/sabnzbd
   volumes_from:
@@ -18,6 +16,8 @@ couchpotato:
   volumes_from:
     - settings
   restart: always
+ddclient:
+  build: ddclient
 settings:
   build: settings
 reverseproxy:
