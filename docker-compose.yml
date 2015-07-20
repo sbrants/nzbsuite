@@ -2,6 +2,7 @@ sabnzbd:
   image: sbrants/sabnzbd
   volumes_from:
     - settings
+  restart: always
 sickbeard:
   image: sbrants/sickbeard
   links:
@@ -18,8 +19,12 @@ couchpotato:
   restart: always
 ddclient:
   build: ddclient
+  restart: always
 settings:
   build: settings
+  volumes:
+    - /mnt/drobo/Public/Series:/tv
+    - /mnt/drobo/Public/Movies:/movies
 reverseproxy:
   build: reverseproxy
   ports:
@@ -29,3 +34,4 @@ reverseproxy:
     - sabnzbd
     - sickbeard
     - couchpotato
+  restart: always
