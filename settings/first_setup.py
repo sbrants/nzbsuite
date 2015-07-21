@@ -20,8 +20,8 @@ def create_api_key():
     # Return a hex digest of the md5, eg 49f68a5c8493ec2c0bf489821c21fc3b
     return m.hexdigest()
 
-if not os.path.exists("/config/sabnzbd.ini"):
-    with open("/config/sabnzbd.ini", "w") as sabnzbd:
+if not os.path.exists("/sabnzbd_data/sabnzbd.ini"):
+    with open("/sabnzbd_data/sabnzbd.ini", "w") as sabnzbd:
         api_key = create_api_key()
         sabnzbd.write("[misc]\n")
         sabnzbd.write("api_key = {}\n".format(api_key))
@@ -59,15 +59,15 @@ newzbin = ""
 dir = movies""")
 
 def finSabKey():
-    with open("/config/sabnzbd.ini") as sabnzbd:
+    with open("/sabnzbd_data/sabnzbd.ini") as sabnzbd:
         for line in sabnzbd:
             items = line.strip().split("=")
             if len(items) == 2:
                 if items[0].strip() == "api_key":
                     return items[1].strip()
 
-if not os.path.exists("/config/config.ini"):
-    with open("/config/config.ini", "w") as sickbeard:
+if not os.path.exists("/sickbeard_data/config.ini"):
+    with open("/sickbeard_data/config.ini", "w") as sickbeard:
         sickbeard.write("[General]\n")
         sickbeard.write("config_version = 6\n")
         sickbeard.write('web_root = "/sickbeard"\n')
@@ -82,8 +82,8 @@ if not os.path.exists("/config/config.ini"):
         sickbeard.write("sab_category = tv\n")
         sickbeard.write("sab_host = http://sabnzbd:8080/\n")
 
-if not os.path.exists("/config/settings.conf"):
-    with open("/config/settings.conf", "w") as couchpotato:
+if not os.path.exists("/couchpotato_data/settings.conf"):
+    with open("/couchpotato_data/settings.conf", "w") as couchpotato:
         couchpotato.write("""[core]
 url_base = couchpotato
 launch_browser = False

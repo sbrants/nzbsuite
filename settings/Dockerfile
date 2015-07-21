@@ -6,6 +6,6 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ADD first_setup.py /
 
-VOLUME ["/config", "/data/complete", "/tv", "/movies"]
+VOLUME ["/sabnzbd_data", "/sickbeard_data", "/couchpotato_data", "/data/complete", "/tv", "/movies"]
 
 ENTRYPOINT ["python", "/first_setup.py"]
