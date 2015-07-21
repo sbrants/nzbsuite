@@ -22,6 +22,12 @@ ddclient:
   restart: always
 settings:
   build: settings
+plex:
+  image: timhaak/plex
+  ports:
+    - 32400:32400
+  net: "host"
+  restart: always
 reverseproxy:
   build: reverseproxy
   ports:
