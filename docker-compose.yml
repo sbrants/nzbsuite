@@ -22,9 +22,6 @@ ddclient:
   restart: always
 settings:
   build: settings
-  volumes:
-    - /mnt/drobo/Public/Series:/tv
-    - /mnt/drobo/Public/Movies:/movies
 reverseproxy:
   build: reverseproxy
   ports:
