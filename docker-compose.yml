@@ -25,8 +25,12 @@ settings:
 plex:
   image: timhaak/plex
   ports:
-    - 32400:32400
+    - "32400:32400"
   net: "host"
+  restart: always
+ganglia: wookietreiber/ganglia
+  ports:
+    - "8000:80"
   restart: always
 reverseproxy:
   build: reverseproxy
@@ -37,4 +41,5 @@ reverseproxy:
     - sabnzbd
     - sickbeard
     - couchpotato
+    - ganglia
   restart: always
