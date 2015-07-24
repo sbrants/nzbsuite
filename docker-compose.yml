@@ -22,18 +22,12 @@ ddclient:
   restart: always
 settings:
   build: settings
-  volumes:
-   - /mnt/drobo/Public/Series:/tv
-   - /mnt/drobo/Public/Movies:/movies
-#plex:
-#  image: timhaak/plex
-#  ports:
-#    - "32400:32400"
-#  net: "host"
-#  volumes:
-#    - /mnt/drobo/Public:/data
-#    - /mnt/drobo/Public/PlexConfig:/config
-#  restart: always
+plex:
+  image: timhaak/plex
+  ports:
+    - "32400:32400"
+  net: "host"
+  restart: always
 ganglia:
   #image: wookietreiber/ganglia
   image: sbrants/ganglia
