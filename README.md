@@ -17,7 +17,7 @@ To get started:
 Things to know:
 
 1. Plex
- - The volume you map for configuration need to allow for symlynk and locking sqlite3. I had trouble mounting over a Samba share. I solved the issue by using a local folder on the host for the settings and used a shared folder on the network to store the database backups (scheduled tasks in Plex server configuration.
+ - The volume you map for configuration need to allow for symlink and locking sqlite3. I had trouble mounting over a Samba share. I solved the issue by using a local folder on the host for the settings and used a shared folder on the network to store the database backups (scheduled tasks in Plex server configuration.
 1. Ganglia
  - I Couldn't make Ganglia work the way I wanted (deaf gmond on the docker host and mute gmond + gmetad in the container). That's why there's the ugly need to tell the container the IP/hostname of the host until I can figure it out.
 1. Reverse proxy
