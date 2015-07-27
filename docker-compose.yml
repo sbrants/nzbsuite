@@ -22,19 +22,23 @@ ddclient:
   restart: always
 settings:
   build: settings
+  #volumes:
+  # - /EDIT_HERE:/tv
+  # - /EDIT_HERE:/movies
 plex:
   image: timhaak/plex
-  ports:
-    - "32400:32400"
   net: "host"
+  #volumes:
+  #  - /EDIT_HERE:/data
+  #  - /EDIT_HERE:/config
   restart: always
 ganglia:
-  #image: wookietreiber/ganglia
-  image: sbrants/ganglia
+  image: wookietreiber/ganglia
   command: --without-gmond --timezone US/Pacific
   restart: always
-  volumes:
-    - gmetad.conf:/etc/ganglia/gmetad.conf
+  #volumes:
+  #  - /EDIT_HERE:/etc/ganglia/
+  #  - /EDIT_HERE:/var/lib/ganglia/
 reverseproxy:
   build: reverseproxy
   ports:
