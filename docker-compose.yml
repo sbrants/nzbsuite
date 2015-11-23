@@ -1,44 +1,55 @@
 sabnzbd:
   image: sbrants/sabnzbd
-  volumes_from:
-    - settings
+  volumes:
+    - /mnt/drobo/Public/Configs/sabnzbd_data:/sabnzbd_data
+    - /mnt/drobo/Public/temp_download/complete:/data/complete
+    - /mnt/drobo/Public/temp_download/incomplete:/data/incomplete
   restart: always
-sickbeard:
-  image: sbrants/sickbeard
+#sickbeard:
+#  image: sbrants/sickbeard
+#  links:
+#    - sabnzbd
+#  volumes:
+#    - /mnt/drobo/Public/Configs/sickbeard_data:/sickbeard_data
+#    - /mnt/drobo/Public/temp_download/complete:/data/complete
+#    - /mnt/drobo/Public/Series:/tv
+#  restart: always
+sonarr:
+  image: tuxeh/sonarr
+  restart: always
+  volumes:
+    - /mnt/drobo/Public/Series:/volumes/media
+    - /config_sonar/config:/volumes/config
+    - /mnt/drobo/Public/temp_download/complete/tv:/volumes/completed
   links:
     - sabnzbd
-  volumes_from:
-    - settings
-  restart: always
 couchpotato:
   image: sbrants/couchpotato
   links:
     - sabnzbd
-  volumes_from:
-    - settings
+  volumes:
+    - /mnt/drobo/Public/Configs/couchpotato_data:/couchpotato_data
+    - /mnt/drobo/Public/temp_download/complete:/data/complete
+    - /mnt/drobo/Public/Movies:/movies
   restart: always
 ddclient:
   build: ddclient
   restart: always
-settings:
-  build: settings
-  #volumes:
-  # - /EDIT_HERE:/tv
-  # - /EDIT_HERE:/movies
 plex:
   image: timhaak/plex
   net: "host"
-  #volumes:
-  #  - /EDIT_HERE:/data
-  #  - /EDIT_HERE:/config
+  volumes:
+    - /mnt/drobo/Public:/data
+    - /PlexConfig:/config
+    - /mnt/drobo/Public/PlexBackup:/backup
   restart: always
 ganglia:
   image: wookietreiber/ganglia
   command: --without-gmond --timezone US/Pacific
   restart: always
-  #volumes:
-  #  - /EDIT_HERE:/etc/ganglia/
-  #  - /EDIT_HERE:/var/lib/ganglia/
+  volumes:
+    - /etc/ganglia/:/etc/ganglia/
+    - /var/lib/ganglia/:/var/lib/ganglia/
 reverseproxy:
   build: reverseproxy
   ports:
@@ -46,7 +57,8 @@ reverseproxy:
     - "80:80"
   links:
     - sabnzbd
-    - sickbeard
+    #- sickbeard
     - couchpotato
     - ganglia
+    - sonarr
   restart: always
