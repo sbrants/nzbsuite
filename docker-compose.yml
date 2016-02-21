@@ -64,8 +64,5 @@ services:
     networks:
       - frontend
     restart: always
-volumes:
-  downloaded:
-  
 networks:
   frontend:
