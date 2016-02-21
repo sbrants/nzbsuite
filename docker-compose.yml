@@ -5,15 +5,6 @@ sabnzbd:
     - /mnt/drobo/Public/temp_download/complete:/data/complete
     - /mnt/drobo/Public/temp_download/incomplete:/data/incomplete
   restart: always
-#sickbeard:
-#  image: sbrants/sickbeard
-#  links:
-#    - sabnzbd
-#  volumes:
-#    - /mnt/drobo/Public/Configs/sickbeard_data:/sickbeard_data
-#    - /mnt/drobo/Public/temp_download/complete:/data/complete
-#    - /mnt/drobo/Public/Series:/tv
-#  restart: always
 sonarr:
   image: tuxeh/sonarr
   restart: always
